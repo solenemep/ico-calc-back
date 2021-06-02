@@ -13,7 +13,7 @@ contract ICO is AccessControl {
     Token private _token;
     address private _reserve;
     address private _owner;
-    bool private _contractClosed = false;
+    bool private _contractClosed;
     uint256 private _tokenPrice;
     uint256 private _nbTokenSold;
     bytes32 public constant OWNER = keccak256("OWNER");
@@ -50,6 +50,12 @@ contract ICO is AccessControl {
     }
 
     // functions
+    function startContract() public {
+        require(msg.sender == _reserve, "ICO : only owner of tokens can use this function");
+        _contractClosed = false;
+        _token.approve(address(this), _token.totalSupply());
+    }
+
     receive() external payable {
         // _deposit(msg.sender, msg.value * _tokenPrice);
     }
@@ -60,7 +66,6 @@ contract ICO is AccessControl {
         require(msg.value > 0, "ICO : you have to pay to get tokens");
         require(amount <= reserveBalance, "ICO : do not have enought tokens to sell");
         _nbTokenSold += amount;
-        _token.approve(_reserve, amount);
         _token.transferFrom(_reserve, msg.sender, amount);
         // event Approval et Transfer dans fonctions approve et transferFrom
         emit Bought(msg.sender, amount);
