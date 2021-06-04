@@ -85,6 +85,8 @@ contract ICO is AccessControl {
         emit Bought(sender, amount);
     }
 
+    /// @notice Allow owner of ICO to withdraw his fund after ende of ICO
+    /// @dev Function must been called after end of contract : 2 weeks after deployment
     function withdraw() public onlyRole(OWNER) salesOff {
         uint256 icoBalance = address(this).balance;
         require(icoBalance != 0, "ICO : you can not withdraw empty balance");
