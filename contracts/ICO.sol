@@ -58,14 +58,22 @@ contract ICO is AccessControl {
     }
 
     // functions
+    /// @notice Receive function to directly send ether to ICO
+    /// @dev Classic receive function calls private _buyTokens function
     receive() external payable {
         _buyTokens(msg.sender, msg.value);
     }
 
+    /// @notice Allow users to buy tokens
+    /// @dev Function calls private _buyTokens function
     function buyTokens() public payable {
         _buyTokens(msg.sender, msg.value);
     }
 
+    /// @notice Private function called throught receive and buyTokens functions
+    /// @dev Private function called throught receive and buyTokens functions
+    /// @param sender the one that calls the function
+    /// @param value the value sent to ICO
     function _buyTokens(address sender, uint256 value) private notOwner salesOn {
         uint256 amount = value / _tokenPrice;
         uint256 reserveBalance = _token.balanceOf(_reserve);
