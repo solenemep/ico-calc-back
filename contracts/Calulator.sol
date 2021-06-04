@@ -44,6 +44,11 @@ contract Calculator is Ownable {
     }
 
     // functions
+    /// @notice Allow user to make an addition in exchange of TKN
+    /// @dev Simple return value and call for paying function
+    /// @param a first parameter of operation
+    /// @param b second parameter of operation
+    /// @return _result, result of operation
     function add(int256 a, int256 b) public returns (int256) {
         _result = a + b;
         _payOperation(msg.sender);
@@ -51,6 +56,11 @@ contract Calculator is Ownable {
         return _result;
     }
 
+    /// @notice Allow user to make a substraction in exchange of TKN
+    /// @dev Simple return value and call for paying function
+    /// @param a first parameter of operation
+    /// @param b second parameter of operation
+    /// @return _result, result of operation
     function sub(int256 a, int256 b) public returns (int256) {
         _result = a - b;
         _payOperation(msg.sender);
@@ -58,6 +68,11 @@ contract Calculator is Ownable {
         return _result;
     }
 
+    /// @notice Allow user to make a multiplication in exchange of TKN
+    /// @dev Simple return value and call for paying function
+    /// @param a first parameter of operation
+    /// @param b second parameter of operation
+    /// @return _result, result of operation
     function mul(int256 a, int256 b) public returns (int256) {
         _result = a * b;
         _payOperation(msg.sender);
@@ -65,6 +80,11 @@ contract Calculator is Ownable {
         return _result;
     }
 
+    /// @notice Allow user to make a division in exchange of TKN
+    /// @dev Simple return value and call for paying function
+    /// @param a first parameter of operation
+    /// @param b second parameter of operation
+    /// @return _result, result of operation
     function div(int256 a, int256 b) public returns (int256) {
         require(b != 0, "Calculator : can not divide by 0");
         _result = a / b;
@@ -73,6 +93,11 @@ contract Calculator is Ownable {
         return _result;
     }
 
+    /// @notice Allow user to make a modulo in exchange of TKN
+    /// @dev Simple return value and call for paying function
+    /// @param a first parameter of operation
+    /// @param b second parameter of operation
+    /// @return _result, result of operation
     function mod(int256 a, int256 b) public returns (int256) {
         _result = a % b;
         _payOperation(msg.sender);
@@ -80,11 +105,16 @@ contract Calculator is Ownable {
         return _result;
     }
 
+    /// @notice Called when anyone makes an operation
+    /// @dev Calls transfer function from ERC20 : Token
+    /// @param sender the one that makes the operation
     function _payOperation(address sender) private enoughtToken {
         _token.transferFrom(sender, address(this), price);
         emit Bought(sender, price);
     }
 
+    /// @notice Allow owner of Calculator to withdraw his fund
+    /// @dev Calls transfer function from ERC20 : Token
     function withdraw() public onlyOwner {
         uint256 calcBalance = _token.balanceOf(address(this));
         require(calcBalance != 0, "Calculator : you can not withdraw empty balance");
