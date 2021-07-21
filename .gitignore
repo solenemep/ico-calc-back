@@ -6,3 +6,4 @@ artifacts
 
 #VSCode files
 .vscode
+.env
