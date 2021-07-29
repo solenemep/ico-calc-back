@@ -1,8 +1,9 @@
+const { ethers } = require('ethers');
 const hre = require('hardhat');
 const { deployed } = require('./deployed');
 const { getContract } = require('./getContract');
 
-const TOKEN_PRICE = 100;
+const TOKEN_PRICE = 1;
 
 async function main() {
   const [deployer, reserve, owner] = await hre.ethers.getSigners();
