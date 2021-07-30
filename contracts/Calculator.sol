@@ -18,15 +18,14 @@ contract Calculator is Ownable {
     // State variables
     Token private _token;
     address private _owner;
-    int256 private _result;
     uint256 public price = 1;
 
     // Events
-    event Added(int256 a, int256 b, int256 result);
-    event Substracted(int256 a, int256 b, int256 result);
-    event Multiplied(int256 a, int256 b, int256 result);
-    event Divided(int256 a, int256 b, int256 result);
-    event Modulated(int256 a, int256 b, int256 result);
+    event Added(int256 a, int256 b);
+    event Substracted(int256 a, int256 b);
+    event Multiplied(int256 a, int256 b);
+    event Divided(int256 a, int256 b);
+    event Modulated(int256 a, int256 b);
     event Bought(address indexed sender, uint256 price);
     event Withdrawed(address indexed sender, uint256 amount);
 
@@ -50,10 +49,9 @@ contract Calculator is Ownable {
     /// @param b second parameter of operation
     /// @return _result, result of operation
     function add(int256 a, int256 b) public returns (int256) {
-        _result = a + b;
         _payOperation(msg.sender);
-        emit Added(a, b, _result);
-        return _result;
+        emit Added(a, b);
+        return a + b;
     }
 
     /// @notice Allow user to make a substraction in exchange of TKN
@@ -62,10 +60,9 @@ contract Calculator is Ownable {
     /// @param b second parameter of operation
     /// @return _result, result of operation
     function sub(int256 a, int256 b) public returns (int256) {
-        _result = a - b;
         _payOperation(msg.sender);
-        emit Substracted(a, b, _result);
-        return _result;
+        emit Substracted(a, b);
+        return a - b;
     }
 
     /// @notice Allow user to make a multiplication in exchange of TKN
@@ -74,10 +71,9 @@ contract Calculator is Ownable {
     /// @param b second parameter of operation
     /// @return _result, result of operation
     function mul(int256 a, int256 b) public returns (int256) {
-        _result = a * b;
         _payOperation(msg.sender);
-        emit Multiplied(a, b, _result);
-        return _result;
+        emit Multiplied(a, b);
+        return a * b;
     }
 
     /// @notice Allow user to make a division in exchange of TKN
@@ -87,10 +83,9 @@ contract Calculator is Ownable {
     /// @return _result, result of operation
     function div(int256 a, int256 b) public returns (int256) {
         require(b != 0, "Calculator : can not divide by 0");
-        _result = a / b;
         _payOperation(msg.sender);
-        emit Divided(a, b, _result);
-        return _result;
+        emit Divided(a, b);
+        return a / b;
     }
 
     /// @notice Allow user to make a modulo in exchange of TKN
@@ -99,10 +94,9 @@ contract Calculator is Ownable {
     /// @param b second parameter of operation
     /// @return _result, result of operation
     function mod(int256 a, int256 b) public returns (int256) {
-        _result = a % b;
         _payOperation(msg.sender);
-        emit Modulated(a, b, _result);
-        return _result;
+        emit Modulated(a, b);
+        return a % b;
     }
 
     /// @notice Called when anyone makes an operation

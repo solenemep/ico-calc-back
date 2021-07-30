@@ -1,5 +1,1 @@
-{
-  "Token": { "kovan": { "address": "0xd24c0aFB3dcc8Fc198C19b8dF64c644d13254137" } },
-  "ICO": { "kovan": { "address": "0xfBf55D45A3BB085d8a64e0e75F13878D0bf35E5A" } },
-  "Calculator": { "kovan": { "address": "0x6401096A457669cd20232bc0B2C31a141f878A73" } }
-}
+{"Token":{"kovan":{"address":"0xd864c51B36d0BF617b8E923A673001e07b696bd3"}},"ICO":{"kovan":{"address":"0xd85e9f469953e3aBe37227E2505520817bBA5529"}},"Calculator":{"kovan":{"address":"0x534e11bBf52FB48C1C205939507413C0e38FaF68"}}}

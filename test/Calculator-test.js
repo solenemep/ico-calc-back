@@ -52,7 +52,7 @@ describe('Calculator', async function () {
         await expect(calculator.connect(alice).add(10, 5)).to.emit(calculator, 'Bought').withArgs(alice.address, 1);
       });
       it('Emits Added event', async function () {
-        await expect(calculator.connect(alice).add(10, 5)).to.emit(calculator, 'Added').withArgs(10, 5, 15);
+        await expect(calculator.connect(alice).add(10, 5)).to.emit(calculator, 'Added').withArgs(10, 5);
       });
     });
     describe('sub', async function () {
@@ -72,7 +72,7 @@ describe('Calculator', async function () {
         await expect(calculator.connect(alice).sub(10, 5)).to.emit(calculator, 'Bought').withArgs(alice.address, 1);
       });
       it('Emits Substracted event', async function () {
-        await expect(calculator.connect(alice).sub(10, 5)).to.emit(calculator, 'Substracted').withArgs(10, 5, 5);
+        await expect(calculator.connect(alice).sub(10, 5)).to.emit(calculator, 'Substracted').withArgs(10, 5);
       });
     });
     describe('mul', async function () {
@@ -92,7 +92,7 @@ describe('Calculator', async function () {
         await expect(calculator.connect(alice).mul(10, 5)).to.emit(calculator, 'Bought').withArgs(alice.address, 1);
       });
       it('Emits Multiplied event', async function () {
-        await expect(calculator.connect(alice).mul(10, 5)).to.emit(calculator, 'Multiplied').withArgs(10, 5, 50);
+        await expect(calculator.connect(alice).mul(10, 5)).to.emit(calculator, 'Multiplied').withArgs(10, 5);
       });
     });
     describe('div', async function () {
@@ -115,7 +115,7 @@ describe('Calculator', async function () {
         await expect(calculator.connect(alice).div(10, 5)).to.emit(calculator, 'Bought').withArgs(alice.address, 1);
       });
       it('Emits Divided event', async function () {
-        await expect(calculator.connect(alice).div(10, 5)).to.emit(calculator, 'Divided').withArgs(10, 5, 2);
+        await expect(calculator.connect(alice).div(10, 5)).to.emit(calculator, 'Divided').withArgs(10, 5);
       });
     });
     describe('mod', async function () {
@@ -135,7 +135,7 @@ describe('Calculator', async function () {
         await expect(calculator.connect(alice).mod(10, 5)).to.emit(calculator, 'Bought').withArgs(alice.address, 1);
       });
       it('Emits Modulated event', async function () {
-        await expect(calculator.connect(alice).mod(10, 5)).to.emit(calculator, 'Modulated').withArgs(10, 5, 0);
+        await expect(calculator.connect(alice).mod(10, 5)).to.emit(calculator, 'Modulated').withArgs(10, 5);
       });
     });
   });
